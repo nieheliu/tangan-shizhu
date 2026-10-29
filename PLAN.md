@@ -493,7 +493,7 @@ rules:
   - 验收：目录结构与第 5 节一致；`.env` 和 `data/raw/*.pdf` 被 git 忽略。
 - [x] **1.2 后端骨架**：创建 `backend/.venv`，编写锁版本的 `requirements.txt`（fastapi、uvicorn、sqlalchemy 2、psycopg[binary]、alembic、pydantic-settings、pyjwt、pwdlib[argon2]、neo4j、langgraph、openai、chromadb、simpleeval、apscheduler、pypdf、pytest、httpx、ruff）。不加入 python-jose、passlib、langchain、langchain-openai、langchain-ollama，也不加入多 Agent 框架。编写 `app/main.py`，提供 `/api/v1/health`。
   - 验收：`uvicorn app.main:app` 能启动，`/docs` 页面可以打开。
-- [ ] **1.3 基础设施**：按第 5.1 节从零实现 config、logging、audit、health、security、request_id、rag 骨架。
+- [x] **1.3 基础设施**：按第 5.1 节从零实现 config、logging、audit、health、security、request_id、rag 骨架。
   - 验收：`pytest` 通过；健康检查能列出各组件状态（连不上的显示 down，接口本身不报错）。
 - [ ] **1.4 LLM 工厂**：编写 `core/llm.py`。DeepSeek 使用 `https://api.deepseek.com`，通义千问使用 `https://dashscope.aliyuncs.com/compatible-mode/v1`，模型名从 `.env` 读取。推荐解释只走云端，失败由调用方改用模板。问答可再试 Ollama。
   - 验收：单元测试中 mock 云端失败时，推荐路径不调用 Ollama；问答路径会再试 Ollama。
@@ -633,3 +633,4 @@ rules:
 |---|---|---|---|
 | 2026-10-29 | 1.1 | 建立目录、`.gitignore`、`README.md`、`AGENTS.md`，并初始化 Git | `.env` 与 `data/raw/*.pdf` 已忽略。后端和前端还没有可运行代码 |
 | 2026-10-29 | 1.2 | 后端虚拟环境、锁版本依赖、`GET /api/v1/health` 和 `/docs` | pytest 2 项通过。虚拟环境不入库 |
+| 2026-10-29 | 1.3 | 配置、日志、审计、JWT、请求号、依赖健康检查和指南切块骨架 | 未配置的 PostgreSQL、Neo4j、LLM 显示 down，接口仍返回 200。pytest 12 项通过 |
