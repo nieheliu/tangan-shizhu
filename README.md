@@ -19,5 +19,19 @@
 ## 环境
 
 - Windows，PowerShell。命令之间用 `;` 连接。
-- Python 3.10 及以上。虚拟环境在 `backend\.venv`，运行时用 `.\.venv\Scripts\python`。
-- 后端和前端的启动方式会在对应任务完成后写在这里。
+- Python 3.11（`py -3`）。虚拟环境在 `backend\.venv`。
+- 后端和前端的启动方式会随任务补全。目前可以启动后端健康检查。
+
+## 启动后端
+
+```powershell
+cd backend
+.\.venv\Scripts\python -m uvicorn app.main:app --reload
+```
+
+浏览器打开 http://127.0.0.1:8000/docs 。健康检查是 `GET /api/v1/health`。
+
+```powershell
+cd backend
+.\.venv\Scripts\python -m pytest
+```

@@ -1,0 +1,21 @@
+# 直接依赖已锁版本。langgraph 会安装 langchain-core，业务代码不使用 LangChain Chain。
+# 不安装 python-jose、passlib、langchain、多 Agent 框架。
+
+fastapi==0.162.0
+uvicorn[standard]==0.54.0
+sqlalchemy==2.1.6
+psycopg[binary]==3.3.6
+alembic==1.20.1
+pydantic-settings==2.16.2
+pyjwt==2.15.1
+pwdlib[argon2]==0.3.1
+neo4j==6.4.1
+langgraph==1.2.18
+openai==3.41.0
+chromadb==1.5.9
+simpleeval==1.0.8
+apscheduler==3.11.3
+pypdf==6.21.4
+pytest==9.2.0
+httpx==0.28.1
+ruff==0.17.3

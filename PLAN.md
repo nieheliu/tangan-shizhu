@@ -491,7 +491,7 @@ rules:
 
 - [x] **1.1 初始化仓库**：创建第 5 节的目录结构、`.gitignore`、`README.md`、`AGENTS.md`，然后 `git init`。
   - 验收：目录结构与第 5 节一致；`.env` 和 `data/raw/*.pdf` 被 git 忽略。
-- [ ] **1.2 后端骨架**：创建 `backend/.venv`，编写锁版本的 `requirements.txt`（fastapi、uvicorn、sqlalchemy 2、psycopg[binary]、alembic、pydantic-settings、pyjwt、pwdlib[argon2]、neo4j、langgraph、openai、chromadb、simpleeval、apscheduler、pypdf、pytest、httpx、ruff）。不加入 python-jose、passlib、langchain、langchain-openai、langchain-ollama，也不加入多 Agent 框架。编写 `app/main.py`，提供 `/api/v1/health`。
+- [x] **1.2 后端骨架**：创建 `backend/.venv`，编写锁版本的 `requirements.txt`（fastapi、uvicorn、sqlalchemy 2、psycopg[binary]、alembic、pydantic-settings、pyjwt、pwdlib[argon2]、neo4j、langgraph、openai、chromadb、simpleeval、apscheduler、pypdf、pytest、httpx、ruff）。不加入 python-jose、passlib、langchain、langchain-openai、langchain-ollama，也不加入多 Agent 框架。编写 `app/main.py`，提供 `/api/v1/health`。
   - 验收：`uvicorn app.main:app` 能启动，`/docs` 页面可以打开。
 - [ ] **1.3 基础设施**：按第 5.1 节从零实现 config、logging、audit、health、security、request_id、rag 骨架。
   - 验收：`pytest` 通过；健康检查能列出各组件状态（连不上的显示 down，接口本身不报错）。
@@ -632,3 +632,4 @@ rules:
 | 日期 | 任务编号 | 完成内容 | 备注 / 遗留问题 |
 |---|---|---|---|
 | 2026-10-29 | 1.1 | 建立目录、`.gitignore`、`README.md`、`AGENTS.md`，并初始化 Git | `.env` 与 `data/raw/*.pdf` 已忽略。后端和前端还没有可运行代码 |
+| 2026-10-29 | 1.2 | 后端虚拟环境、锁版本依赖、`GET /api/v1/health` 和 `/docs` | pytest 2 项通过。虚拟环境不入库 |
