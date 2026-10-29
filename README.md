@@ -35,3 +35,17 @@ cd backend
 cd backend
 .\.venv\Scripts\python -m pytest
 ```
+
+## 启动前端
+
+```powershell
+cd frontend
+npm run dev
+```
+
+浏览器打开终端里提示的本地地址，一般是 http://127.0.0.1:5173 。首页通过 `/api` 代理读取后端健康检查。
+
+```powershell
+cd frontend
+npm test
+```
