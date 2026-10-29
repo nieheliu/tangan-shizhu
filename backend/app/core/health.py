@@ -57,9 +57,11 @@ def check_llm() -> str:
         return "down"
     from openai import OpenAI
 
+    from app.core.llm import resolve_cloud_base_url
+
     client = OpenAI(
         api_key=settings.llm_api_key,
-        base_url=settings.llm_base_url,
+        base_url=resolve_cloud_base_url(settings),
         timeout=2,
     )
     client.models.list()
