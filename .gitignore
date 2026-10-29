@@ -1,0 +1,35 @@
+# 密钥
+.env
+backend/.env
+**/.env
+!**/.env.example
+
+# 指南 PDF 与整本成分表不入库
+data/raw/*.pdf
+data/raw/*.PDF
+
+# Python
+backend/.venv/
+**/__pycache__/
+**/*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+*.egg-info/
+.coverage
+htmlcov/
+
+# 向量库
+backend/data/chroma/
+
+# 前端
+frontend/node_modules/
+frontend/dist/
+frontend/.vite/
+
+# 编辑器与系统
+.idea/
+.vscode/
+*.log
+Thumbs.db
+Desktop.ini
