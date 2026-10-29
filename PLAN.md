@@ -635,3 +635,4 @@ rules:
 | 2026-10-29 | 1.2 | 后端虚拟环境、锁版本依赖、`GET /api/v1/health` 和 `/docs` | pytest 2 项通过。虚拟环境不入库 |
 | 2026-10-29 | 1.3 | 配置、日志、审计、JWT、请求号、依赖健康检查和指南切块骨架 | 未配置的 PostgreSQL、Neo4j、LLM 显示 down，接口仍返回 200。pytest 12 项通过 |
 | 2026-10-29 | 1.4 | LLM 工厂：推荐只走云端，问答失败后再试 Ollama | pytest 15 项通过。尚未接入真实 API Key |
+| 2026-10-29 | 1.5 | 写好 `deploy/vm/docker-compose.vm.yml` | 验收未完成。需要虚拟机 IP、登录方式、PostgreSQL 密码和 Neo4j 密码 |
