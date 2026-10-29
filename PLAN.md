@@ -508,7 +508,7 @@ rules:
   - 验收：`alembic upgrade head` 成功。单元测试 mock 会话；集成测试连虚拟机 PostgreSQL。不用 SQLite 做 JSONB 测试。
 - [x] **2.2 认证**：注册、登录（PyJWT）、`get_current_user` 依赖、admin 角色校验。密码用 `pwdlib[argon2]`。
   - 验收：pytest 覆盖注册、登录、无 token 访问返回 401、普通用户访问 admin 接口返回 403。
-- [ ] **2.3 种子数据**：编写 `scripts/seed_demo.py`（30 种食材、20 道食谱、常见单位换算、带“待核对”的烹调油表、1 个年满 18 岁的演示用户及其档案）。
+- [x] **2.3 种子数据**：编写 `scripts/seed_demo.py`（30 种食材、20 道食谱、常见单位换算、带“待核对”的烹调油表、1 个年满 18 岁的演示用户及其档案）。
   - 验收：执行后数据库中有数据，能用演示账号登录。
 - [ ] **2.4 正式数据导入**：编写 `import_foods.py` 和 `import_recipes.py`，含食材名标准化；无法匹配的食材输出到 `data/processed/unmatched.csv`。
   - 验收：达到第 7.4 节的规模目标，或在 `data/README.md` 中说明还缺什么数据。来源和许可证写在该文件中。
@@ -639,3 +639,4 @@ rules:
 | 2026-10-29 | 1.6 | Vue 3 布局、免责声明和首页健康检查 | 数据库、图谱、大模型显示 down；指南索引 up。Vitest 1 项通过 |
 | 2026-10-29 | 2.1 | 全部 PostgreSQL 模型与初始迁移 `44e3579f00ee` | `alembic upgrade head` 已在虚拟机执行。pytest 19 通过，集成测试 1 通过。营养数字只在 PostgreSQL |
 | 2026-10-29 | 2.2 | 注册、登录、当前用户和管理员校验 | 密码用 pwdlib。无 token 返回 401，普通用户访问管理接口返回 403。pytest 25 通过 |
+| 2026-10-29 | 2.3 | 30 种食材、20 道食谱、克单位换算和演示用户 | 营养素与 GI 留空，烹调油克数未填，均标待核对。演示账号 demo 可登录。pytest 26 通过 |
