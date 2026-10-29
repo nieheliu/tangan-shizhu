@@ -504,7 +504,7 @@ rules:
 
 ### 阶段 2：数据层与用户（第 3 ~ 4 周）
 
-- [ ] **2.1 ORM 与迁移**：按第 7.1 节编写全部模型，生成 Alembic 初始迁移，并在虚拟机的 PostgreSQL 上执行。
+- [x] **2.1 ORM 与迁移**：按第 7.1 节编写全部模型，生成 Alembic 初始迁移，并在虚拟机的 PostgreSQL 上执行。
   - 验收：`alembic upgrade head` 成功。单元测试 mock 会话；集成测试连虚拟机 PostgreSQL。不用 SQLite 做 JSONB 测试。
 - [ ] **2.2 认证**：注册、登录（PyJWT）、`get_current_user` 依赖、admin 角色校验。密码用 `pwdlib[argon2]`。
   - 验收：pytest 覆盖注册、登录、无 token 访问返回 401、普通用户访问 admin 接口返回 403。
@@ -637,3 +637,4 @@ rules:
 | 2026-10-29 | 1.4 | LLM 工厂：推荐只走云端，问答失败后再试 Ollama | pytest 15 项通过。尚未接入真实 API Key |
 | 2026-10-29 | 1.5 | 虚拟机 `192.168.88.138` 上的 PostgreSQL 16 与 Neo4j 5 已启动 | 本机健康检查 postgresql、neo4j 均为 up。密码只在 `.env`。大模型仍为 down |
 | 2026-10-29 | 1.6 | Vue 3 布局、免责声明和首页健康检查 | 数据库、图谱、大模型显示 down；指南索引 up。Vitest 1 项通过 |
+| 2026-10-29 | 2.1 | 全部 PostgreSQL 模型与初始迁移 `44e3579f00ee` | `alembic upgrade head` 已在虚拟机执行。pytest 19 通过，集成测试 1 通过。营养数字只在 PostgreSQL |
