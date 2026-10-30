@@ -4,9 +4,9 @@ backend/.env
 **/.env
 !**/.env.example
 
-# 指南 PDF 与整本成分表不入库
-data/raw/*.pdf
-data/raw/*.PDF
+# 指南 PDF、问答扫描件和整本成分表只留在本机
+data/raw/*
+!data/raw/README.md
 
 # Python
 backend/.venv/

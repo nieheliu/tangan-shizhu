@@ -1,0 +1,140 @@
+"""从本机成分表和 GI 表导入食物。整表不进入 Git。"""
+
+import csv
+import json
+from decimal import Decimal
+from pathlib import Path
+
+from sqlalchemy import select
+from sqlalchemy.orm import Session
+
+from app.db.session import get_sessionmaker
+from app.models.entities import Food, FoodUnitConversion
+from app.services.food_catalog import (
+    GI_SOURCE,
+    NUTRIENT_SOURCE,
+    composition_records,
+    gi_records,
+)
+
+ROOT = Path(__file__).resolve().parents[2]
+RAW = ROOT / "data" / "raw"
+UNMATCHED = ROOT / "data" / "processed" / "unmatched.csv"
+COMPOSITION = RAW / "food-composition-v6-fixed-en.csv"
+GI_FILE = RAW / "glycemic-index-of-foods.json"
+
+
+def _rows(path: Path) -> list[dict[str, str]]:
+    with path.open(encoding="utf-8-sig", newline="") as handle:
+        return list(csv.DictReader(handle))
+
+
+def _gi_groups() -> list[dict[str, object]]:
+    payload = json.loads(
+        GI_FILE.read_text(encoding="utf-8"), parse_float=Decimal, parse_int=Decimal
+    )
+    if not isinstance(payload, list):
+        raise TypeError("GI 文件不是列表")
+    return payload
+
+
+def _ensure_gram(session: Session, food: Food) -> None:
+    existing = session.scalars(
+        select(FoodUnitConversion).where(
+            FoodUnitConversion.food_id == food.id,
+            FoodUnitConversion.unit == "克",
+        )
+    ).one_or_none()
+    if existing is None:
+        session.add(
+            FoodUnitConversion(food_id=food.id, unit="克", grams_per_unit=Decimal(1))
+        )
+
+
+def write_unmatched(rows: list[tuple[str, str, str]]) -> None:
+    UNMATCHED.parent.mkdir(parents=True, exist_ok=True)
+    with UNMATCHED.open("w", encoding="utf-8", newline="") as handle:
+        writer = csv.writer(handle)
+        writer.writerow(["kind", "name", "detail"])
+        writer.writerows(rows)
+
+
+def import_foods(session: Session) -> dict[str, int]:
+    by_code: dict[str, Food] = {}
+    by_name: dict[str, Food] = {}
+    for food in session.scalars(select(Food)):
+        by_name[food.name] = food
+        if food.food_code:
+            by_code[food.food_code] = food
+
+    upserted = 0
+    for record in composition_records(_rows(COMPOSITION)):
+        food = by_code.get(record.food_code) or by_name.get(record.name)
+        if food is None:
+            food = Food(name=record.name, alias=[], per_g=Decimal(100))
+            session.add(food)
+        elif food.name != record.name:
+            by_name.pop(food.name, None)
+        food.food_code = record.food_code
+        food.name = record.name
+        food.category = record.category or food.category
+        food.alias = sorted({*(food.alias or []), *record.alias})
+        food.kcal = record.kcal
+        food.carb_g = record.carb_g
+        food.protein_g = record.protein_g
+        food.fat_g = record.fat_g
+        food.fiber_g = record.fiber_g
+        food.sodium_mg = record.sodium_mg
+        food.nutrient_source = NUTRIENT_SOURCE
+        food.per_g = Decimal(100)
+        by_code[record.food_code] = food
+        by_name[record.name] = food
+        upserted += 1
+    session.flush()
+    for food in by_code.values():
+        _ensure_gram(session, food)
+
+    ready, conflicts = gi_records(_gi_groups())
+    attached = 0
+    inserted = 0
+    unmatched = [("gi_conflict", name, detail) for name, detail in conflicts]
+    for record in ready:
+        food = by_name.get(record.name)
+        if food is None:
+            food = Food(
+                name=record.name,
+                alias=[],
+                category=record.category,
+                gi=record.gi,
+                gi_source=GI_SOURCE,
+                per_g=Decimal(100),
+            )
+            session.add(food)
+            by_name[record.name] = food
+            inserted += 1
+            unmatched.append(
+                ("gi_not_in_composition", record.name, "成分表无同名食物，营养素留空")
+            )
+        else:
+            food.gi = record.gi
+            food.gi_source = GI_SOURCE
+            attached += 1
+        session.flush()
+        _ensure_gram(session, food)
+    write_unmatched(unmatched)
+    return {"foods": upserted, "gi_attached": attached, "gi_inserted": inserted}
+
+
+def main() -> None:
+    if not COMPOSITION.exists() or not GI_FILE.exists():
+        raise SystemExit("缺少 data/raw 中的成分表或 GI 文件")
+    with get_sessionmaker()() as session:
+        stats = import_foods(session)
+        session.commit()
+    print(
+        f"foods={stats['foods']} gi_attached={stats['gi_attached']} gi_only={stats['gi_inserted']}"
+    )
+
+
+if __name__ == "__main__":
+    main()

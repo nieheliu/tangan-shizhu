@@ -106,13 +106,15 @@ class Food(Base):
     __tablename__ = "foods"
 
     id: Mapped[int] = mapped_column(primary_key=True)
+    food_code: Mapped[str | None] = mapped_column(String(32), unique=True)
     name: Mapped[str] = mapped_column(String(128), unique=True)
+    nutrient_source: Mapped[str | None] = mapped_column(String(255))
     alias: Mapped[list[str]] = mapped_column(
         JSONB,
         default=list,
         server_default=text("'[]'::jsonb"),
     )
-    category: Mapped[str | None] = mapped_column(String(32), index=True)
+    category: Mapped[str | None] = mapped_column(String(64), index=True)
     kcal: Mapped[Decimal | None] = mapped_column(Numeric(8, 2))
     carb_g: Mapped[Decimal | None] = mapped_column(Numeric(8, 2))
     protein_g: Mapped[Decimal | None] = mapped_column(Numeric(8, 2))

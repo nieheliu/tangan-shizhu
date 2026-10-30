@@ -355,7 +355,7 @@ tangan-shizhu/
 | `users` | id, username(唯一), password_hash, role, created_at |
 | `health_profiles` | id, user_id(唯一), gender, birth_year, height_cm, weight_kg, activity_level, diseases(JSONB), fasting_glucose, hba1c, allergies(JSONB), dislikes(JSONB), preferences(JSONB), daily_kcal_target, updated_at |
 | `pending_profile_updates` | id, user_id, session_id, draft(JSONB), created_at |
-| `foods` | id, name(唯一), alias(JSONB), category, kcal, carb_g, protein_g, fat_g, fiber_g, sodium_mg, gi, gi_source, per_g(默认 100) |
+| `foods` | id, food_code(唯一，可空), name(唯一), alias(JSONB), category, kcal, carb_g, protein_g, fat_g, fiber_g, sodium_mg, gi, gi_source, nutrient_source, per_g(默认 100) |
 | `food_unit_conversions` | id, food_id, unit, grams_per_unit |
 | `recipes` | id, name, cuisine, meal_types(JSONB), cooking_method, steps(TEXT), servings, image_url, source |
 | `recipe_ingredients` | id, recipe_id, food_id, amount_g, is_main |
