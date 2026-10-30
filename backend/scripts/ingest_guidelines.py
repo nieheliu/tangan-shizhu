@@ -10,19 +10,15 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
-from app.core.config import get_settings
 from app.rag.embeddings import embed_texts
 from app.rag.ingest import ingest_pdf, reset_collection
-from app.rag.vectorstore import open_client
+from app.rag.vectorstore import chroma_directory, open_client
 
 PDF_NAME = "adult-diabetes-dietary-guide-2023.pdf"
 
 
 def chroma_dir() -> Path:
-    configured = Path(get_settings().chroma_path)
-    if configured.is_absolute():
-        return configured
-    return Path(__file__).resolve().parents[1] / configured
+    return chroma_directory()
 
 
 def guideline_pdf() -> Path:

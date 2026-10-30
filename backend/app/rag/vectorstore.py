@@ -1,10 +1,19 @@
+from pathlib import Path
 from typing import Any
 
 import chromadb
 
+from app.core.config import get_settings
 from app.rag.indexer import GuidelineChunk
 
 COLLECTION_NAME = "guidelines"
+
+
+def chroma_directory() -> Path:
+    configured = Path(get_settings().chroma_path)
+    if configured.is_absolute():
+        return configured
+    return Path(__file__).resolve().parents[2] / configured
 
 
 def open_client(path: str | None = None) -> Any:
