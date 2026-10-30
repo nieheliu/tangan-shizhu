@@ -1,0 +1,238 @@
+kind,name,detail
+gi_conflict,白面包,同名 GI 不一致，未入库
+gi_conflict,马铃薯（蒸）,同名 GI 不一致，未入库
+gi_conflict,豆奶,同名 GI 不一致，未入库
+gi_conflict,冰淇淋,同名 GI 不一致，未入库
+gi_not_in_composition,葡萄糖,成分表无同名食物，营养素留空
+gi_not_in_composition,绵白糖,成分表无同名食物，营养素留空
+gi_not_in_composition,蔗糖,成分表无同名食物，营养素留空
+gi_not_in_composition,果糖,成分表无同名食物，营养素留空
+gi_not_in_composition,乳糖,成分表无同名食物，营养素留空
+gi_not_in_composition,麦芽糖,成分表无同名食物，营养素留空
+gi_not_in_composition,蜂蜜,成分表无同名食物，营养素留空
+gi_not_in_composition,胶质软糖,成分表无同名食物，营养素留空
+gi_not_in_composition,巧克力,成分表无同名食物，营养素留空
+gi_not_in_composition,MM 巧克力,成分表无同名食物，营养素留空
+gi_not_in_composition,方糖,成分表无同名食物，营养素留空
+gi_not_in_composition,小麦（整粒煮）,成分表无同名食物，营养素留空
+gi_not_in_composition,粗麦粉（蒸）,成分表无同名食物，营养素留空
+gi_not_in_composition,面条（强化蛋白质，细煮）,成分表无同名食物，营养素留空
+gi_not_in_composition,面条（全麦粉，细）,成分表无同名食物，营养素留空
+gi_not_in_composition,面条（白细，煮）,成分表无同名食物，营养素留空
+gi_not_in_composition,面条（硬质小麦粉，细煮）,成分表无同名食物，营养素留空
+gi_not_in_composition,线面条（实心，细）,成分表无同名食物，营养素留空
+gi_not_in_composition,通心面（管状，粗）,成分表无同名食物，营养素留空
+gi_not_in_composition,面条（小麦粉，硬，扁粗）,成分表无同名食物，营养素留空
+gi_not_in_composition,面条（硬质小麦粉，加鸡蛋，粗）,成分表无同名食物，营养素留空
+gi_not_in_composition,面条（硬质小麦粉，细）,成分表无同名食物，营养素留空
+gi_not_in_composition,面条（挂面，全麦粉）,成分表无同名食物，营养素留空
+gi_not_in_composition,苗条（挂面，精制小麦粉）,成分表无同名食物，营养素留空
+gi_not_in_composition,馒头（全麦粉）,成分表无同名食物，营养素留空
+gi_not_in_composition,馒头（精制小麦粉）,成分表无同名食物，营养素留空
+gi_not_in_composition,烙饼,成分表无同名食物，营养素留空
+gi_not_in_composition,稻麸,成分表无同名食物，营养素留空
+gi_not_in_composition,大米粥,成分表无同名食物，营养素留空
+gi_not_in_composition,大米饭（籼米，糙米）,成分表无同名食物，营养素留空
+gi_not_in_composition,大米饭（粳米，糙米）,成分表无同名食物，营养素留空
+gi_not_in_composition,大米饭（籼米，精米）,成分表无同名食物，营养素留空
+gi_not_in_composition,大米饭（粳米，精米）,成分表无同名食物，营养素留空
+gi_not_in_composition,黏米饭 / 含直链淀粉高，煮,成分表无同名食物，营养素留空
+gi_not_in_composition,黏米饭 / 含直链淀粉低，煮,成分表无同名食物，营养素留空
+gi_not_in_composition,黑米饭,成分表无同名食物，营养素留空
+gi_not_in_composition,速冻米饭,成分表无同名食物，营养素留空
+gi_not_in_composition,糯米饭,成分表无同名食物，营养素留空
+gi_not_in_composition,大米糯米粥,成分表无同名食物，营养素留空
+gi_not_in_composition,黑米粥,成分表无同名食物，营养素留空
+gi_not_in_composition,大麦（整粒，煮）,成分表无同名食物，营养素留空
+gi_not_in_composition,大麦粉,成分表无同名食物，营养素留空
+gi_not_in_composition,黑麦（整粒，煮）,成分表无同名食物，营养素留空
+gi_not_in_composition,玉米（甜，煮）,成分表无同名食物，营养素留空
+gi_not_in_composition,玉米面（粗粉，煮）,成分表无同名食物，营养素留空
+gi_not_in_composition,玉米面粥,成分表无同名食物，营养素留空
+gi_not_in_composition,玉米糁粥,成分表无同名食物，营养素留空
+gi_not_in_composition,玉米饼,成分表无同名食物，营养素留空
+gi_not_in_composition,玉米片（市售）,成分表无同名食物，营养素留空
+gi_not_in_composition,玉米片（高纤维，市售）,成分表无同名食物，营养素留空
+gi_not_in_composition,小米（煮）,成分表无同名食物，营养素留空
+gi_not_in_composition,米饼,成分表无同名食物，营养素留空
+gi_not_in_composition,荞麦（黄）,成分表无同名食物，营养素留空
+gi_not_in_composition,荞麦面条,成分表无同名食物，营养素留空
+gi_not_in_composition,荞麦面馒头,成分表无同名食物，营养素留空
+gi_not_in_composition,燕麦麸,成分表无同名食物，营养素留空
+gi_not_in_composition,莜麦饭（整粒）,成分表无同名食物，营养素留空
+gi_not_in_composition,糜子饭（整粒）,成分表无同名食物，营养素留空
+gi_not_in_composition,燕麦饭（整粒）,成分表无同名食物，营养素留空
+gi_not_in_composition,燕麦片粥,成分表无同名食物，营养素留空
+gi_not_in_composition,即食燕麦粥,成分表无同名食物，营养素留空
+gi_not_in_composition,全麦（全麦面包）,成分表无同名食物，营养素留空
+gi_not_in_composition,面包（未发酵小麦）,成分表无同名食物，营养素留空
+gi_not_in_composition,印度卷饼,成分表无同名食物，营养素留空
+gi_not_in_composition,薄煎饼（美式）,成分表无同名食物，营养素留空
+gi_not_in_composition,意大利面（精制面粉）,成分表无同名食物，营养素留空
+gi_not_in_composition,意大利面（全麦）,成分表无同名食物，营养素留空
+gi_not_in_composition,乌冬面,成分表无同名食物，营养素留空
+gi_not_in_composition,饼干（小麦片）,成分表无同名食物，营养素留空
+gi_not_in_composition,马铃薯,成分表无同名食物，营养素留空
+gi_not_in_composition,马铃薯（用微波炉烤）,成分表无同名食物，营养素留空
+gi_not_in_composition,马铃薯（烧烤，无油脂）,成分表无同名食物，营养素留空
+gi_not_in_composition,马铃薯泥,成分表无同名食物，营养素留空
+gi_not_in_composition,马铃薯粉条,成分表无同名食物，营养素留空
+gi_not_in_composition,马铃薯片（油炸）,成分表无同名食物，营养素留空
+gi_not_in_composition,炸薯条,成分表无同名食物，营养素留空
+gi_not_in_composition,甘薯（山芋）,成分表无同名食物，营养素留空
+gi_not_in_composition,甘薯（红，煮）,成分表无同名食物，营养素留空
+gi_not_in_composition,苕粉,成分表无同名食物，营养素留空
+gi_not_in_composition,粉丝汤（豌豆）,成分表无同名食物，营养素留空
+gi_not_in_composition,黄豆（浸泡）,成分表无同名食物，营养素留空
+gi_not_in_composition,黄豆（罐头）,成分表无同名食物，营养素留空
+gi_not_in_composition,黄豆挂面（有面粉）,成分表无同名食物，营养素留空
+gi_not_in_composition,豆腐（炖）,成分表无同名食物，营养素留空
+gi_not_in_composition,豆腐（冻）,成分表无同名食物，营养素留空
+gi_not_in_composition,绿豆,成分表无同名食物，营养素留空
+gi_not_in_composition,绿豆挂面,成分表无同名食物，营养素留空
+gi_not_in_composition,蚕豆（五香）,成分表无同名食物，营养素留空
+gi_not_in_composition,扁豆（红，小）,成分表无同名食物，营养素留空
+gi_not_in_composition,扁豆（绿，小）,成分表无同名食物，营养素留空
+gi_not_in_composition,扁豆（绿，小，罐头）,成分表无同名食物，营养素留空
+gi_not_in_composition,小扁豆汤（罐头）,成分表无同名食物，营养素留空
+gi_not_in_composition,利马豆（棉豆）,成分表无同名食物，营养素留空
+gi_not_in_composition,利马豆（加 5 克蔗糖）,成分表无同名食物，营养素留空
+gi_not_in_composition,利马豆（加 10 克蔗糖）,成分表无同名食物，营养素留空
+gi_not_in_composition,利马豆（嫩，冷冻）,成分表无同名食物，营养素留空
+gi_not_in_composition,鹰嘴豆,成分表无同名食物，营养素留空
+gi_not_in_composition,鹰嘴豆（罐头）,成分表无同名食物，营养素留空
+gi_not_in_composition,咖喱鹰嘴豆（罐头）,成分表无同名食物，营养素留空
+gi_not_in_composition,青刀豆,成分表无同名食物，营养素留空
+gi_not_in_composition,青刀豆（罐头）,成分表无同名食物，营养素留空
+gi_not_in_composition,豌豆,成分表无同名食物，营养素留空
+gi_not_in_composition,黑马诺豆,成分表无同名食物，营养素留空
+gi_not_in_composition,黑豆汤,成分表无同名食物，营养素留空
+gi_not_in_composition,四季豆,成分表无同名食物，营养素留空
+gi_not_in_composition,四季豆（高压处理）,成分表无同名食物，营养素留空
+gi_not_in_composition,四季豆（罐头）,成分表无同名食物，营养素留空
+gi_not_in_composition,芸豆,成分表无同名食物，营养素留空
+gi_not_in_composition,甜菜,成分表无同名食物，营养素留空
+gi_not_in_composition,胡萝卜（金笋）,成分表无同名食物，营养素留空
+gi_not_in_composition,南瓜（倭瓜、番瓜）,成分表无同名食物，营养素留空
+gi_not_in_composition,麝香瓜,成分表无同名食物，营养素留空
+gi_not_in_composition,山药（薯蓣）,成分表无同名食物，营养素留空
+gi_not_in_composition,雪魔芋,成分表无同名食物，营养素留空
+gi_not_in_composition,芋头（蒸芋艿 / 毛芋）,成分表无同名食物，营养素留空
+gi_not_in_composition,朝鲜笋,成分表无同名食物，营养素留空
+gi_not_in_composition,芦笋,成分表无同名食物，营养素留空
+gi_not_in_composition,绿菜花,成分表无同名食物，营养素留空
+gi_not_in_composition,菜花,成分表无同名食物，营养素留空
+gi_not_in_composition,茄子,成分表无同名食物，营养素留空
+gi_not_in_composition,鲜青豆,成分表无同名食物，营养素留空
+gi_not_in_composition,莴笋（各种类型）,成分表无同名食物，营养素留空
+gi_not_in_composition,生菜,成分表无同名食物，营养素留空
+gi_not_in_composition,青椒,成分表无同名食物，营养素留空
+gi_not_in_composition,西红柿,成分表无同名食物，营养素留空
+gi_not_in_composition,胡萝卜（煮）,成分表无同名食物，营养素留空
+gi_not_in_composition,桃,成分表无同名食物，营养素留空
+gi_not_in_composition,桃（罐头，含果汁）,成分表无同名食物，营养素留空
+gi_not_in_composition,桃（罐头，含糖浓度低）,成分表无同名食物，营养素留空
+gi_not_in_composition,桃（罐头，含糖浓度高）,成分表无同名食物，营养素留空
+gi_not_in_composition,杏罐头，含淡味果汁,成分表无同名食物，营养素留空
+gi_not_in_composition,葡萄,成分表无同名食物，营养素留空
+gi_not_in_composition,葡萄（淡黄色，小，无核）,成分表无同名食物，营养素留空
+gi_not_in_composition,猕猴桃,成分表无同名食物，营养素留空
+gi_not_in_composition,柑（橘子）,成分表无同名食物，营养素留空
+gi_not_in_composition,柚,成分表无同名食物，营养素留空
+gi_not_in_composition,巴婆果,成分表无同名食物，营养素留空
+gi_not_in_composition,菠萝,成分表无同名食物，营养素留空
+gi_not_in_composition,芒果,成分表无同名食物，营养素留空
+gi_not_in_composition,芭蕉（甘蔗板蕉）,成分表无同名食物，营养素留空
+gi_not_in_composition,香蕉,成分表无同名食物，营养素留空
+gi_not_in_composition,香蕉（生）,成分表无同名食物，营养素留空
+gi_not_in_composition,西瓜,成分表无同名食物，营养素留空
+gi_not_in_composition,枣,成分表无同名食物，营养素留空
+gi_not_in_composition,草莓酱（果冻）,成分表无同名食物，营养素留空
+gi_not_in_composition,花生,成分表无同名食物，营养素留空
+gi_not_in_composition,腰果,成分表无同名食物，营养素留空
+gi_not_in_composition,牛奶,成分表无同名食物，营养素留空
+gi_not_in_composition,牛奶（加糖和巧克力）,成分表无同名食物，营养素留空
+gi_not_in_composition,牛奶（加人工甜味剂和巧克力）,成分表无同名食物，营养素留空
+gi_not_in_composition,全脂牛奶,成分表无同名食物，营养素留空
+gi_not_in_composition,脱脂牛奶,成分表无同名食物，营养素留空
+gi_not_in_composition,低脂奶粉,成分表无同名食物，营养素留空
+gi_not_in_composition,降糖奶粉,成分表无同名食物，营养素留空
+gi_not_in_composition,老年奶粉,成分表无同名食物，营养素留空
+gi_not_in_composition,克糖奶粉,成分表无同名食物，营养素留空
+gi_not_in_composition,酸奶（加糖）,成分表无同名食物，营养素留空
+gi_not_in_composition,酸乳酪（普通）,成分表无同名食物，营养素留空
+gi_not_in_composition,酸乳酪（低脂）,成分表无同名食物，营养素留空
+gi_not_in_composition,酸乳酪（低脂，加人工甜味剂）,成分表无同名食物，营养素留空
+gi_not_in_composition,酸奶（水果）,成分表无同名食物，营养素留空
+gi_not_in_composition,大米（即食，煮 1 分钟）,成分表无同名食物，营养素留空
+gi_not_in_composition,大米（即食，煮 6 分钟）,成分表无同名食物，营养素留空
+gi_not_in_composition,小麦片,成分表无同名食物，营养素留空
+gi_not_in_composition,燕麦片（混合）,成分表无同名食物，营养素留空
+gi_not_in_composition,荞麦方便面,成分表无同名食物，营养素留空
+gi_not_in_composition,即食羹,成分表无同名食物，营养素留空
+gi_not_in_composition,营养饼,成分表无同名食物，营养素留空
+gi_not_in_composition,全麦维（家乐氏）,成分表无同名食物，营养素留空
+gi_not_in_composition,可可米（家乐氏）,成分表无同名食物，营养素留空
+gi_not_in_composition,卜卜米（家乐氏）,成分表无同名食物，营养素留空
+gi_not_in_composition,比萨饼（含乳酪）,成分表无同名食物，营养素留空
+gi_not_in_composition,汉堡包,成分表无同名食物，营养素留空
+gi_not_in_composition,面包（全麦粉）,成分表无同名食物，营养素留空
+gi_not_in_composition,面包（粗面粉）,成分表无同名食物，营养素留空
+gi_not_in_composition,面包（黑麦粉）,成分表无同名食物，营养素留空
+gi_not_in_composition,面包（小麦粉，高纤维）,成分表无同名食物，营养素留空
+gi_not_in_composition,面包（小麦粉，去面筋）,成分表无同名食物，营养素留空
+gi_not_in_composition,面包（小麦粉，含水果干）,成分表无同名食物，营养素留空
+gi_not_in_composition,面包（50% ~ 80% 碎小麦粒）,成分表无同名食物，营养素留空
+gi_not_in_composition,面包（75% ~ 80% 大麦粒）,成分表无同名食物，营养素留空
+gi_not_in_composition,面包（50% 大麦粒）,成分表无同名食物，营养素留空
+gi_not_in_composition,面包（80% ~ 100% 大麦粉）,成分表无同名食物，营养素留空
+gi_not_in_composition,面包（黑麦粒）,成分表无同名食物，营养素留空
+gi_not_in_composition,面包（45% ~ 50% 燕麦麸）,成分表无同名食物，营养素留空
+gi_not_in_composition,面包（80% 燕麦粒）,成分表无同名食物，营养素留空
+gi_not_in_composition,面包（混合谷物）,成分表无同名食物，营养素留空
+gi_not_in_composition,新月形面包,成分表无同名食物，营养素留空
+gi_not_in_composition,棍子面包,成分表无同名食物，营养素留空
+gi_not_in_composition,燕麦粗粉饼干,成分表无同名食物，营养素留空
+gi_not_in_composition,油酥脆饼干,成分表无同名食物，营养素留空
+gi_not_in_composition,高纤维黑麦薄脆饼干,成分表无同名食物，营养素留空
+gi_not_in_composition,竹芋粉饼干,成分表无同名食物，营养素留空
+gi_not_in_composition,小麦饼干,成分表无同名食物，营养素留空
+gi_not_in_composition,苏打饼干,成分表无同名食物，营养素留空
+gi_not_in_composition,格雷厄姆华饼干,成分表无同名食物，营养素留空
+gi_not_in_composition,华夫饼干,成分表无同名食物，营养素留空
+gi_not_in_composition,香草华夫饼干,成分表无同名食物，营养素留空
+gi_not_in_composition,膨化薄脆饼干,成分表无同名食物，营养素留空
+gi_not_in_composition,闲趣饼干（达能）,成分表无同名食物，营养素留空
+gi_not_in_composition,牛奶香脆饼干（达能）,成分表无同名食物，营养素留空
+gi_not_in_composition,酥皮糕点,成分表无同名食物，营养素留空
+gi_not_in_composition,爆玉米花,成分表无同名食物，营养素留空
+gi_not_in_composition,苹果汁,成分表无同名食物，营养素留空
+gi_not_in_composition,水蜜桃汁,成分表无同名食物，营养素留空
+gi_not_in_composition,巴梨汁（罐头）,成分表无同名食物，营养素留空
+gi_not_in_composition,菠萝汁（不加糖）,成分表无同名食物，营养素留空
+gi_not_in_composition,柚子果汁（不加糖）,成分表无同名食物，营养素留空
+gi_not_in_composition,橙汁（纯果汁）,成分表无同名食物，营养素留空
+gi_not_in_composition,橘子汁,成分表无同名食物，营养素留空
+gi_not_in_composition,可乐饮料,成分表无同名食物，营养素留空
+gi_not_in_composition,芬达软饮料,成分表无同名食物，营养素留空
+gi_not_in_composition,啤酒（澳大利亚产）,成分表无同名食物，营养素留空
+gi_not_in_composition,冰淇淋 / 低脂,成分表无同名食物，营养素留空
+gi_not_in_composition,馒头 + 芹菜炒鸡蛋,成分表无同名食物，营养素留空
+gi_not_in_composition,馒头 + 酱牛肉,成分表无同名食物，营养素留空
+gi_not_in_composition,馒头 + 黄油,成分表无同名食物，营养素留空
+gi_not_in_composition,饼 + 鸡蛋炒木耳,成分表无同名食物，营养素留空
+gi_not_in_composition,饺子 / 三鲜,成分表无同名食物，营养素留空
+gi_not_in_composition,包子 / 芹菜猪肉,成分表无同名食物，营养素留空
+gi_not_in_composition,硬质小麦粉肉馅馄饨,成分表无同名食物，营养素留空
+gi_not_in_composition,牛肉面,成分表无同名食物，营养素留空
+gi_not_in_composition,米饭 + 鱼,成分表无同名食物，营养素留空
+gi_not_in_composition,米饭 + 芹菜炒猪肉,成分表无同名食物，营养素留空
+gi_not_in_composition,米饭 + 炒蒜苗,成分表无同名食物，营养素留空
+gi_not_in_composition,米饭 + 蒜苗炒鸡蛋,成分表无同名食物，营养素留空
+gi_not_in_composition,米饭 + 红烧猪肉,成分表无同名食物，营养素留空
+gi_not_in_composition,玉米粉加入人造黄油 / 煮,成分表无同名食物，营养素留空
+gi_not_in_composition,猪肉炖粉条,成分表无同名食物，营养素留空
+gi_not_in_composition,西红柿汤,成分表无同名食物，营养素留空
+gi_not_in_composition,二合面窝头 / 玉米面 + 面粉,成分表无同名食物，营养素留空
+gi_not_in_composition,牛奶蛋糊 / 牛奶 + 淀粉 + 糖,成分表无同名食物，营养素留空
+gi_not_in_composition,黑五类粉,成分表无同名食物，营养素留空
