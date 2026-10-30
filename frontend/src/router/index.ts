@@ -10,6 +10,7 @@ import RecommendView from "../views/RecommendView.vue";
 import RecipeView from "../views/RecipeView.vue";
 import ReportView from "../views/ReportView.vue";
 import ShoppingView from "../views/ShoppingView.vue";
+import GraphView from "../views/GraphView.vue";
 
 export const routes: RouteRecordRaw[] = [
   { path: "/login", component: AuthView, meta: { title: "登录", public: true } },
@@ -22,7 +23,7 @@ export const routes: RouteRecordRaw[] = [
   { path: "/report", component: ReportView, meta: { title: "营养报告" } },
   { path: "/shopping", component: ShoppingView, meta: { title: "购物清单" } },
   { path: "/chat", component: PlaceholderView, meta: { title: "问答" } },
-  { path: "/graph", component: PlaceholderView, meta: { title: "知识图谱" } },
+  { path: "/graph", component: GraphView, meta: { title: "知识图谱" } },
 ];
 
 export function attachAuthGuard(router: Router) {

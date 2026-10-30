@@ -7,6 +7,7 @@ from fastapi.responses import JSONResponse
 from app.agent.workflow import RecommendError
 from app.api.v1.admin import router as admin_router
 from app.api.v1.auth import router as auth_router
+from app.api.v1.graph import router as graph_router
 from app.api.v1.inventory import router as inventory_router
 from app.api.v1.meal_plans import router as meal_plans_router
 from app.api.v1.profile import router as profile_router
@@ -19,6 +20,7 @@ from app.core.logging_setup import setup_logging
 from app.middleware.request_id import RequestIdMiddleware
 from app.rules.engine import RulesError
 from app.services.auth import AuthError
+from app.services.graph import GraphError
 from app.services.inventory import (
     InventoryError,
     start_expiry_scheduler,
@@ -44,6 +46,7 @@ app = FastAPI(title="糖安食助", version="0.1.0", lifespan=lifespan)
 app.add_middleware(RequestIdMiddleware)
 app.include_router(auth_router, prefix="/api/v1")
 app.include_router(admin_router, prefix="/api/v1")
+app.include_router(graph_router, prefix="/api/v1")
 app.include_router(profile_router, prefix="/api/v1")
 app.include_router(inventory_router, prefix="/api/v1")
 app.include_router(recommend_router, prefix="/api/v1")
@@ -55,6 +58,14 @@ app.include_router(meal_plans_router, prefix="/api/v1")
 
 @app.exception_handler(AuthError)
 async def handle_auth_error(_request: Request, exc: AuthError) -> JSONResponse:
+    return JSONResponse(
+        status_code=exc.status_code,
+        content={"detail": exc.detail, "code": exc.code},
+    )
+
+
+@app.exception_handler(GraphError)
+async def handle_graph_error(_request: Request, exc: GraphError) -> JSONResponse:
     return JSONResponse(
         status_code=exc.status_code,
         content={"detail": exc.detail, "code": exc.code},

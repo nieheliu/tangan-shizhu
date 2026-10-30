@@ -70,6 +70,93 @@ def disease_guidance(driver: Driver, disease: str) -> DiseaseGuidance:
     )
 
 
+_DEPTH_PATTERN = {1: "[*1..1]", 2: "[*1..2]"}
+
+
+@dataclass(frozen=True)
+class GraphNode:
+    node_id: str
+    name: str
+    label: str
+    pg_id: int | None
+
+
+@dataclass(frozen=True)
+class GraphEdge:
+    source: str
+    target: str
+    relation: str
+    reason: str | None
+    citation: str | None
+
+
+def neighborhood(
+    driver: Driver, name: str, depth: int
+) -> tuple[GraphNode | None, tuple[GraphNode, ...], tuple[GraphEdge, ...]]:
+    pattern = _DEPTH_PATTERN.get(depth)
+    if pattern is None:
+        raise GraphQueryError("只查询一度或二度")
+    center_rows, _, _ = driver.execute_query(
+        """
+        MATCH (start)
+        WHERE start.name = $name AND (start:Food OR start:Disease OR start:Recipe)
+        RETURN labels(start)[0] AS label, start.name AS name, start.pg_id AS pg_id
+        ORDER BY CASE labels(start)[0]
+            WHEN 'Food' THEN 0
+            WHEN 'Disease' THEN 1
+            ELSE 2
+        END
+        LIMIT 1
+        """,
+        parameters_={"name": name},
+        routing_=RoutingControl.READ,
+    )
+    if not center_rows:
+        return None, (), ()
+    center = _node(center_rows[0]["label"], center_rows[0]["name"], center_rows[0]["pg_id"])
+    edge_rows, _, _ = driver.execute_query(
+        f"""
+        MATCH (start)
+        WHERE start.name = $name AND $label IN labels(start)
+        MATCH path = (start)-{pattern}-(other)
+        UNWIND relationships(path) AS rel
+        WITH startNode(rel) AS a, endNode(rel) AS b, rel
+        RETURN DISTINCT labels(a)[0] AS a_label, a.name AS a_name, a.pg_id AS a_pg_id,
+               labels(b)[0] AS b_label, b.name AS b_name, b.pg_id AS b_pg_id,
+               type(rel) AS relation, rel.reason AS reason, rel.source AS citation
+        """,
+        parameters_={"name": center.name, "label": center.label},
+        routing_=RoutingControl.READ,
+    )
+    nodes = {center.node_id: center}
+    edges: list[GraphEdge] = []
+    seen: set[tuple[str, str, str]] = set()
+    for row in edge_rows:
+        left = _node(row["a_label"], row["a_name"], row["a_pg_id"])
+        right = _node(row["b_label"], row["b_name"], row["b_pg_id"])
+        nodes[left.node_id] = left
+        nodes[right.node_id] = right
+        key = (left.node_id, right.node_id, row["relation"])
+        if key in seen:
+            continue
+        seen.add(key)
+        edges.append(
+            GraphEdge(
+                source=left.node_id,
+                target=right.node_id,
+                relation=row["relation"],
+                reason=row["reason"],
+                citation=row["citation"],
+            )
+        )
+    ordered = tuple(sorted(nodes.values(), key=lambda item: (item.node_id != center.node_id, item.name)))
+    return center, ordered, tuple(edges)
+
+
+def _node(label: str, name: str, pg_id: int | None) -> GraphNode:
+    return GraphNode(node_id=f"{label}:{name}", name=name, label=label, pg_id=pg_id)
+
+
 def food_relations(driver: Driver, name: str) -> tuple[GraphLink, ...]:
     records, _, _ = driver.execute_query(
         """
