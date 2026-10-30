@@ -269,6 +269,7 @@ def test_only_inventory_splits_when_strict_is_short(
     assert strict_ids == [1]
     assert relaxed_ids == [2]
     assert 1 not in relaxed_ids
+    assert result["strict"][0]["held_foods"] == ["燕麦"]
     assert result["relaxed"][0]["missing_foods"] == ["荞麦"]
 
 

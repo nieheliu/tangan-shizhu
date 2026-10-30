@@ -5,7 +5,17 @@ import { beforeEach, describe, expect, it } from "vitest";
 import { attachAuthGuard, routes } from "../src/router";
 import { useUserStore } from "../src/stores/user";
 
-const guardedPaths = ["/", "/profile", "/fridge", "/recommend", "/report", "/shopping", "/chat", "/graph"];
+const guardedPaths = [
+  "/",
+  "/profile",
+  "/fridge",
+  "/recommend",
+  "/recipe/1",
+  "/report",
+  "/shopping",
+  "/chat",
+  "/graph",
+];
 
 describe("auth guard", () => {
   beforeEach(() => {

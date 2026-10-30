@@ -6,7 +6,7 @@
   <el-container v-else class="layout">
     <el-aside width="220px">
       <div class="brand">糖安食助</div>
-      <el-menu router :default-active="route.path">
+      <el-menu router :default-active="menuIndex">
         <el-menu-item index="/">首页</el-menu-item>
         <el-menu-item index="/profile">健康档案</el-menu-item>
         <el-menu-item index="/fridge">我的冰箱</el-menu-item>
@@ -47,6 +47,9 @@ const router = useRouter();
 const user = useUserStore();
 const title = computed(() => String(route.meta.title ?? "糖安食助"));
 const isPublic = computed(() => route.meta.public === true);
+const menuIndex = computed(() =>
+  route.path.startsWith("/recipe/") ? "/recommend" : route.path,
+);
 
 function signOut() {
   user.logout();

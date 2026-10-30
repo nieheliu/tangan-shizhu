@@ -16,6 +16,7 @@ class RecommendItem(BaseModel):
     reason: str
     citation_ids: list[str]
     missing_foods: list[str]
+    held_foods: list[str]
     kcal: float | None
     carb_g: float | None
     protein_g: float | None

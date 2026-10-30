@@ -8,7 +8,9 @@ from app.agent.workflow import RecommendError
 from app.api.v1.admin import router as admin_router
 from app.api.v1.auth import router as auth_router
 from app.api.v1.inventory import router as inventory_router
+from app.api.v1.meal_plans import router as meal_plans_router
 from app.api.v1.profile import router as profile_router
+from app.api.v1.recipes import router as recipes_router
 from app.api.v1.recommend import router as recommend_router
 from app.core.health import health_payload
 from app.core.logging_setup import setup_logging
@@ -20,7 +22,9 @@ from app.services.inventory import (
     start_expiry_scheduler,
     stop_expiry_scheduler,
 )
+from app.services.meal_plans import MealPlanError
 from app.services.profile import ProfileError
+from app.services.recipes import RecipeError
 from app.services.recommend import RecommendDataError
 
 setup_logging()
@@ -40,6 +44,8 @@ app.include_router(admin_router, prefix="/api/v1")
 app.include_router(profile_router, prefix="/api/v1")
 app.include_router(inventory_router, prefix="/api/v1")
 app.include_router(recommend_router, prefix="/api/v1")
+app.include_router(recipes_router, prefix="/api/v1")
+app.include_router(meal_plans_router, prefix="/api/v1")
 
 
 @app.exception_handler(AuthError)
@@ -81,6 +87,24 @@ async def handle_recommend_data_error(
 @app.exception_handler(RecommendError)
 async def handle_recommend_error(
     _request: Request, exc: RecommendError
+) -> JSONResponse:
+    return JSONResponse(
+        status_code=exc.status_code,
+        content={"detail": exc.detail, "code": exc.code},
+    )
+
+
+@app.exception_handler(RecipeError)
+async def handle_recipe_error(_request: Request, exc: RecipeError) -> JSONResponse:
+    return JSONResponse(
+        status_code=exc.status_code,
+        content={"detail": exc.detail, "code": exc.code},
+    )
+
+
+@app.exception_handler(MealPlanError)
+async def handle_meal_plan_error(
+    _request: Request, exc: MealPlanError
 ) -> JSONResponse:
     return JSONResponse(
         status_code=exc.status_code,

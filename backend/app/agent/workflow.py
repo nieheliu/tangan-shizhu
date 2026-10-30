@@ -466,6 +466,7 @@ def _item_payload(item: ScoredRecipe) -> dict[str, object]:
         "reason": item.reason,
         "citation_ids": list(item.citation_ids),
         "missing_foods": list(item.missing_foods),
+        "held_foods": list(item.held_foods),
         "kcal": _number(nutrition.kcal),
         "carb_g": _number(nutrition.carb_g),
         "protein_g": _number(nutrition.protein_g),
