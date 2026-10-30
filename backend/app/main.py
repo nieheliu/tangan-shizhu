@@ -12,6 +12,7 @@ from app.api.v1.meal_plans import router as meal_plans_router
 from app.api.v1.profile import router as profile_router
 from app.api.v1.recipes import router as recipes_router
 from app.api.v1.recommend import router as recommend_router
+from app.api.v1.reports import router as reports_router
 from app.core.health import health_payload
 from app.core.logging_setup import setup_logging
 from app.middleware.request_id import RequestIdMiddleware
@@ -45,6 +46,7 @@ app.include_router(profile_router, prefix="/api/v1")
 app.include_router(inventory_router, prefix="/api/v1")
 app.include_router(recommend_router, prefix="/api/v1")
 app.include_router(recipes_router, prefix="/api/v1")
+app.include_router(reports_router, prefix="/api/v1")
 app.include_router(meal_plans_router, prefix="/api/v1")
 
 

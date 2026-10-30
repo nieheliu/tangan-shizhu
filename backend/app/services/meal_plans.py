@@ -55,6 +55,41 @@ def add_to_plan(
     return plan, True
 
 
+def list_plans(session: Session, user_id: int, day: date) -> list[dict[str, object]]:
+    rows = session.execute(
+        select(MealPlan, Recipe)
+        .join(Recipe, MealPlan.recipe_id == Recipe.id)
+        .where(MealPlan.user_id == user_id, MealPlan.date == day)
+    ).all()
+    ranked = sorted(rows, key=lambda row: (_meal_rank(row[0].meal_type), row[0].id))
+    return [
+        {
+            "id": plan.id,
+            "date": plan.date,
+            "meal_type": plan.meal_type,
+            "recipe_id": plan.recipe_id,
+            "recipe_name": recipe.name,
+            "servings": float(plan.servings),
+        }
+        for plan, recipe in ranked
+    ]
+
+
+def delete_plan(session: Session, user_id: int, plan_id: int) -> None:
+    plan = session.get(MealPlan, plan_id)
+    if plan is None or plan.user_id != user_id:
+        raise MealPlanError(status_code=404, detail="找不到这条计划", code="plan_not_found")
+    session.delete(plan)
+    session.commit()
+
+
+def _meal_rank(meal_type: str) -> int:
+    try:
+        return MEAL_TYPES.index(meal_type)
+    except ValueError:
+        return len(MEAL_TYPES)
+
+
 def _find(
     session: Session,
     user_id: int,

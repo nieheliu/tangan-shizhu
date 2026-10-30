@@ -10,6 +10,15 @@ class MealPlanCreate(BaseModel):
     meal_type: str = Field(max_length=16)
 
 
+class MealPlanItem(BaseModel):
+    id: int
+    date: date
+    meal_type: str
+    recipe_id: int
+    recipe_name: str
+    servings: float
+
+
 class MealPlanView(BaseModel):
     id: int
     date: date

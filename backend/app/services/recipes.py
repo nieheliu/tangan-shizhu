@@ -12,6 +12,7 @@ from app.models.entities import Food, Recipe, RecipeIngredient
 from app.services.recipe_nutrition import (
     IngredientLine,
     OilNutrients,
+    RecipeNutrition,
     calculate_recipe_nutrition,
     is_cooking_oil,
     load_cooking_oil,
@@ -25,43 +26,17 @@ class RecipeError(Exception):
         self.code = code
 
 
+def recipe_nutrition(session: Session, recipe: Recipe) -> RecipeNutrition:
+    lines, _ingredients = _ingredient_lines(session, recipe)
+    return _nutrition_from_lines(session, recipe, lines)
+
+
 def get_recipe_detail(session: Session, recipe_id: int) -> dict[str, object]:
     recipe = session.get(Recipe, recipe_id)
     if recipe is None:
         raise RecipeError(status_code=404, detail="找不到这道食谱", code="recipe_not_found")
-    rows = list(
-        session.scalars(
-            select(RecipeIngredient)
-            .where(RecipeIngredient.recipe_id == recipe_id)
-            .order_by(RecipeIngredient.id)
-        )
-    )
-    foods = _foods(session, [row.food_id for row in rows])
-    lines: list[IngredientLine] = []
-    ingredients: list[dict[str, object]] = []
-    for row in rows:
-        food = foods.get(row.food_id)
-        if food is None:
-            continue
-        lines.append(_line(food, row))
-        ingredients.append(
-            {
-                "food_id": food.id,
-                "name": food.name,
-                "amount_g": float(row.amount_g),
-                "is_main": row.is_main,
-            }
-        )
-    oil = session.scalar(select(Food).where(Food.name == "花生油"))
-    nutrition = calculate_recipe_nutrition(
-        lines,
-        servings=recipe.servings or Decimal(1),
-        cooking_method=recipe.cooking_method,
-        oil_table=load_cooking_oil(),
-        default_oil=None
-        if oil is None
-        else OilNutrients(per_g=oil.per_g, kcal=oil.kcal, fat_g=oil.fat_g),
-    )
+    lines, ingredients = _ingredient_lines(session, recipe)
+    nutrition = _nutrition_from_lines(session, recipe, lines)
     graph, links = _graph_links([item.name for item in lines])
     return {
         "id": recipe.id,
@@ -90,6 +65,50 @@ def get_recipe_detail(session: Session, recipe_id: int) -> dict[str, object]:
         "gl_estimate": _number(nutrition.gl_estimate),
         "gl_is_approximate": nutrition.gl_is_approximate,
     }
+
+
+def _nutrition_from_lines(
+    session: Session, recipe: Recipe, lines: list[IngredientLine]
+) -> RecipeNutrition:
+    oil = session.scalar(select(Food).where(Food.name == "花生油"))
+    return calculate_recipe_nutrition(
+        lines,
+        servings=recipe.servings or Decimal(1),
+        cooking_method=recipe.cooking_method,
+        oil_table=load_cooking_oil(),
+        default_oil=None
+        if oil is None
+        else OilNutrients(per_g=oil.per_g, kcal=oil.kcal, fat_g=oil.fat_g),
+    )
+
+
+def _ingredient_lines(
+    session: Session, recipe: Recipe
+) -> tuple[list[IngredientLine], list[dict[str, object]]]:
+    rows = list(
+        session.scalars(
+            select(RecipeIngredient)
+            .where(RecipeIngredient.recipe_id == recipe.id)
+            .order_by(RecipeIngredient.id)
+        )
+    )
+    foods = _foods(session, [row.food_id for row in rows])
+    lines: list[IngredientLine] = []
+    ingredients: list[dict[str, object]] = []
+    for row in rows:
+        food = foods.get(row.food_id)
+        if food is None:
+            continue
+        lines.append(_line(food, row))
+        ingredients.append(
+            {
+                "food_id": food.id,
+                "name": food.name,
+                "amount_g": float(row.amount_g),
+                "is_main": row.is_main,
+            }
+        )
+    return lines, ingredients
 
 
 def _foods(session: Session, food_ids: list[int]) -> dict[int, Food]:

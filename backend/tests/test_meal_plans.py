@@ -2,6 +2,7 @@
 
 from collections.abc import Iterator
 from datetime import date
+from decimal import Decimal
 from unittest.mock import MagicMock
 
 import pytest
@@ -12,7 +13,7 @@ from app.db.session import get_session
 from app.main import app
 from app.models.entities import MealPlan, Recipe, User
 from app.services import auth as auth_service
-from app.services.meal_plans import MealPlanError, add_to_plan
+from app.services.meal_plans import MealPlanError, add_to_plan, delete_plan, list_plans
 
 
 def test_duplicate_plan_is_not_inserted() -> None:
@@ -71,6 +72,29 @@ def test_missing_recipe_and_bad_meal() -> None:
     assert meal.value.code == "invalid_meal_type"
 
 
+def test_plans_are_ordered_by_meal_and_delete_checks_owner() -> None:
+    day = date(2026, 10, 30)
+    dinner = MealPlan(id=1, user_id=1, date=day, meal_type="晚餐", recipe_id=3, servings=Decimal(1))
+    breakfast = MealPlan(
+        id=2, user_id=1, date=day, meal_type="早餐", recipe_id=1, servings=Decimal(1)
+    )
+    session = MagicMock()
+    session.execute.return_value.all.return_value = [
+        (dinner, Recipe(id=3, name="白米饭")),
+        (breakfast, Recipe(id=1, name="燕麦粥")),
+    ]
+    items = list_plans(session, 1, day)
+    assert [item["meal_type"] for item in items] == ["早餐", "晚餐"]
+    assert items[0]["recipe_name"] == "燕麦粥"
+
+    foreign = MealPlan(id=9, user_id=2, date=day, meal_type="午餐", recipe_id=1, servings=Decimal(1))
+    session.get.return_value = foreign
+    with pytest.raises(MealPlanError) as caught:
+        delete_plan(session, 1, 9)
+    assert caught.value.code == "plan_not_found"
+    session.delete.assert_not_called()
+
+
 @pytest.fixture
 def client(monkeypatch: pytest.MonkeyPatch) -> Iterator[TestClient]:
     users: dict[int, User] = {}
@@ -115,12 +139,16 @@ def _token(client: TestClient) -> str:
 
 
 def test_meal_plan_requires_token(client: TestClient) -> None:
-    response = client.post(
+    created = client.post(
         "/api/v1/meal-plans",
         json={"recipe_id": 1, "meal_type": "午餐"},
     )
-    assert response.status_code == 401
-    assert response.json()["code"] == "unauthorized"
+    listed = client.get("/api/v1/meal-plans")
+    removed = client.delete("/api/v1/meal-plans/1")
+    assert created.status_code == 401
+    assert listed.status_code == 401
+    assert removed.status_code == 401
+    assert created.json()["code"] == "unauthorized"
 
 
 def test_meal_plan_api_reports_duplicate(
