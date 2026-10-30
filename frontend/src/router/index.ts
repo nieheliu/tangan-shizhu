@@ -5,13 +5,14 @@ import HomeView from "../views/HomeView.vue";
 import AuthView from "../views/AuthView.vue";
 import PlaceholderView from "../views/PlaceholderView.vue";
 import ProfileView from "../views/ProfileView.vue";
+import FridgeView from "../views/FridgeView.vue";
 
 export const routes: RouteRecordRaw[] = [
   { path: "/login", component: AuthView, meta: { title: "登录", public: true } },
   { path: "/register", component: AuthView, meta: { title: "注册", public: true } },
   { path: "/", name: "home", component: HomeView, meta: { title: "首页" } },
   { path: "/profile", component: ProfileView, meta: { title: "健康档案" } },
-  { path: "/fridge", component: PlaceholderView, meta: { title: "我的冰箱" } },
+  { path: "/fridge", component: FridgeView, meta: { title: "我的冰箱" } },
   { path: "/recommend", component: PlaceholderView, meta: { title: "今日推荐" } },
   { path: "/report", component: PlaceholderView, meta: { title: "营养报告" } },
   { path: "/shopping", component: PlaceholderView, meta: { title: "购物清单" } },
