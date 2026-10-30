@@ -13,6 +13,7 @@ from app.api.v1.profile import router as profile_router
 from app.api.v1.recipes import router as recipes_router
 from app.api.v1.recommend import router as recommend_router
 from app.api.v1.reports import router as reports_router
+from app.api.v1.shopping import router as shopping_router
 from app.core.health import health_payload
 from app.core.logging_setup import setup_logging
 from app.middleware.request_id import RequestIdMiddleware
@@ -27,6 +28,7 @@ from app.services.meal_plans import MealPlanError
 from app.services.profile import ProfileError
 from app.services.recipes import RecipeError
 from app.services.recommend import RecommendDataError
+from app.services.shopping import ShoppingError
 
 setup_logging()
 
@@ -47,6 +49,7 @@ app.include_router(inventory_router, prefix="/api/v1")
 app.include_router(recommend_router, prefix="/api/v1")
 app.include_router(recipes_router, prefix="/api/v1")
 app.include_router(reports_router, prefix="/api/v1")
+app.include_router(shopping_router, prefix="/api/v1")
 app.include_router(meal_plans_router, prefix="/api/v1")
 
 
@@ -107,6 +110,16 @@ async def handle_recipe_error(_request: Request, exc: RecipeError) -> JSONRespon
 @app.exception_handler(MealPlanError)
 async def handle_meal_plan_error(
     _request: Request, exc: MealPlanError
+) -> JSONResponse:
+    return JSONResponse(
+        status_code=exc.status_code,
+        content={"detail": exc.detail, "code": exc.code},
+    )
+
+
+@app.exception_handler(ShoppingError)
+async def handle_shopping_error(
+    _request: Request, exc: ShoppingError
 ) -> JSONResponse:
     return JSONResponse(
         status_code=exc.status_code,
