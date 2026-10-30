@@ -14,6 +14,7 @@ langgraph==1.2.18
 openai==3.41.0
 chromadb==1.5.9
 simpleeval==1.0.8
+pyyaml==6.0.3
 apscheduler==3.11.3
 pypdf==6.21.4
 pytest==9.2.0

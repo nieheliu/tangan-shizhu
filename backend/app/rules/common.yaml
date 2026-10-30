@@ -1,0 +1,16 @@
+# 对所有用户生效。过敏原排除整道菜；忌口只减分。
+rules:
+  - id: COMMON-001
+    type: reject
+    target: recipe
+    when: "allergen_hit"
+    message: "含有过敏原，不推荐这道菜"
+    source: "用户档案中的过敏原"
+  - id: COMMON-002
+    type: score
+    target: recipe
+    when: "dislike_count > 0"
+    per: dislike_count
+    delta: -1
+    message: "含有忌口食材，已降低排序"
+    source: "用户档案中的忌口。忌口只减分，不排除整道菜"

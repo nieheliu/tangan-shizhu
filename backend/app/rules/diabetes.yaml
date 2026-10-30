@@ -1,0 +1,23 @@
+# 数值里的 70 与 docs/contracts.md 的 gi_high_min 相同，来源待核对，不是已证实的临床标准。
+# DM-002 使用添加糖。成分表没有这一列，上下文不提供 added_sugar_g，因此这条目前不会命中。
+disease: 2型糖尿病
+rules:
+  - id: DM-001
+    type: reject
+    target: recipe
+    when: "main_staple_gi >= 70"
+    message: "主食为高 GI 食物（GI≥70），不适合糖尿病人群"
+    source: "成人糖尿病食养指南（2023 年版），第 X 页（待核对）"
+  - id: DM-002
+    type: warn
+    target: recipe
+    when: "added_sugar_g > 10"
+    message: "添加糖较多"
+    source: "待核对"
+  - id: DM-003
+    type: score
+    target: recipe
+    when: "fiber_g >= 5"
+    delta: 2
+    message: "膳食纤维丰富"
+    source: "待核对"
