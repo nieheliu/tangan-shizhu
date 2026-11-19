@@ -126,6 +126,10 @@ def evaluate(
     )
 
 
+def reload_rules() -> None:
+    load_rules.cache_clear()
+
+
 @lru_cache
 def load_rules() -> tuple[Rule, ...]:
     rules: list[Rule] = []
